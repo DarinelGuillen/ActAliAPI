@@ -4,9 +4,13 @@ import FResgistration from "../components/atoms/FResgistration";
 function Registration(){
     return(
         <>
-        <div>
-        <FResgistration/>
+       <div className="Father">
+            <div className="Child">
+            <FResgistration/>
+            </div>
         </div>
+        
+        
         </>
     )
 }
