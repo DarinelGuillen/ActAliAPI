@@ -4,7 +4,7 @@ function Home(){
     return(
         <>
             
-            <Link to="/Registration">Registrarte</Link>
+            <Link to="/">Registrarte</Link>
         </>
     )
 }
