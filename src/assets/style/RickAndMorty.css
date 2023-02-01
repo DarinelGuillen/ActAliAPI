@@ -13,8 +13,8 @@
     border-radius: 20px;
     display: flex;
     align-items: center;
-    width: 30%;
-    padding-left: 40px;
+    width: 50%;
+    padding-left: 50px;
 }
 .allCaracters{
     display: flex;
@@ -22,9 +22,21 @@
     flex-wrap: wrap;
     width: 90%;
 }
+/*  */
+.Recuadro{
+    background-color: rgba(255, 255, 255, 0.109);
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 0 10rem 0 rgba(77, 31, 124, 0.34); 
+    border-radius: 20px;
+    padding:5px 5px 0px 5px;
+    margin-top:9px ;
+    width: 100px;
+}
 #name{
     font-size: 10px;
+    
 }
-img{
+.imgCaracters{
     width: 100px;
+    border-radius: 20px;
 }

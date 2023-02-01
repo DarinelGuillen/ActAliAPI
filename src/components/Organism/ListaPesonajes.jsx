@@ -18,7 +18,11 @@ const handlerClick=(e)=>{
         <h3>Lista de personajes</h3>
         <button onClick={handlerClick}>CLICK</button>
         <div className='allCaracters'>
-            {character.map(character=><div> <Personaje img={character.image} name={character.name}/></div>)}
+            {character.map(character=>
+        <div className='Recuadro'>
+            <Personaje img={character.image} name={character.name} status={character.status} gender={character.gender} planet={character.origin.name}/>
+        </div>
+        )}
         </div>
         </div>
         </>
