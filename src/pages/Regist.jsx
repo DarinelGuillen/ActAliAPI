@@ -3,7 +3,7 @@ function Regist(){
     return(
         <>
         <div className="Father" id="Father">
-            <div className="Child">
+            <div className="ChildRegist">
             <FRegist/>
             </div>
         </div>
