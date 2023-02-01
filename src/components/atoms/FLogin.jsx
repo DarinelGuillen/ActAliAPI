@@ -20,6 +20,7 @@ function FLogin(){
             <button onClick={handlerClick}>Iniciar </button>
             <Link to="/Regist"><button>Registrar Algo</button></Link>
             <Link to="/Registration"><button>Crear o  registrate </button></Link>
+            <Link to="/RickAndMorty"><button> RickAndMorty</button></Link>
             </div>
         </form>
     )
