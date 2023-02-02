@@ -3,12 +3,30 @@ import {Link} from "react-router-dom"
 import LogoRegistration from "../../assets/img/security-tag.png"
 
 function FResgistration(){
-    const formR=useRef();
-    const handlerClick=(e)=>{
+    const formDataRe = useRef();
+    const handlerClick = (e) => {
         e.preventDefault();
-    }
+        const formData = new FormData(formDataRe.current);
+    
+        let URI = "http://34.225.239.102/api/iniciar"; //default post
+    
+        let options = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+                nombre: formData.get("name"),
+                usuario: formData.get("usuario"),
+                correo:formData.get("E.Mail"),
+                contrasenia: formData.get("contrasenia"),
+          }),
+        };
+    
+        fetch(URI, options)
+          .then((response) => response.json())
+          .then((MSN) => {alert(JSON.stringify(MSN))});
+      };
     return(
-        <form ref={formR}>
+        <form ref={formDataRe}>
            <div className="LittleBoxy">
                 <img className="LogosGeneric" src={LogoRegistration} alt="" />
             </div>

@@ -1,50 +1,74 @@
-
 import { useRef } from "react";
-import {Link} from "react-router-dom" 
-import LogoLogin from "../../assets/img/3dfingerprint.png"
-import "../../assets/style/Regist.css"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Regist from '../../pages/Regist';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import LogoLogin from "../../assets/img/3dfingerprint.png";
+import "../../assets/style/Regist.css";
 
-function FLogin(){
-    
-    const formL=useRef();
-    const handlerClick=(e)=>{
-        e.preventDefault();
-        let users="";
+function FLogin() {
+  const formDataL = useRef();
+  const navigate=useNavigate()
+  const formL = useRef();
+  const handlerClick = (e) => {
+    e.preventDefault();
+    const formData = new FormData(formDataL.current);
+
+    let URI = "http://34.225.239.102/api/iniciar"; //default post
+
+    let options = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        usuario: formData.get("usuario"),
+        contrasenia: formData.get("contrasenia"),
+      }),
+    };
+
+    fetch(URI, options)
+      .then((response) => response.json())
+      .then((MSN) => {
         
-        fetch("http://localhost:3000/user") //enviar el request al servidor "nombre del archivo"
-        .then(function (response) {
-        return response.json(); //convetir los datos de .json a un objeto javascrip
-    })
-    .then(function (user) {
-     users = user;
-    console.log(users);
-    })
-    for (let users of users) {
-        console.log();
-    }
-    if(users="darinels"){
+        if (MSN.status) {
+          alert("YOU EXIST")
+          navigate("/Regist");
+        }
+      });
+  };
 
-    }else{}
-    }
-    return(
-        <form ref={formL}>
-            <div className="LittleBoxy">
-                <img className="LogosGeneric" src={LogoLogin} alt="" />
-            </div>
-            
-            <div className="LittleBoxy"><h1>Login</h1></div>
-            <div className="LittleBoxy"><label htmlFor="username">Username</label></div>
-            <div className="LittleBoxy"><input type="text" /></div>
-            <div className="LittleBoxy"><label htmlFor="password">Password</label></div>
-            <div className="LittleBoxy"><input type="password" /></div>
+  return (
+    <form ref={formDataL}>
+      <div className="LittleBoxy">
+        <img className="LogosGeneric" src={LogoLogin} alt="" />
+      </div>
+      <div className="LittleBoxy">
+        <h1>Login</h1>
+      </div>
+      <div className="LittleBoxy">
+        <label htmlFor="username">Username</label>
+      </div>
+      <div className="LittleBoxy">
+        <input type="text" name="usuario" />
+      </div>
+      <div className="LittleBoxy">
+        <label htmlFor="password">Password</label>
+      </div>
+      <div className="LittleBoxy">
+        <input type="password" name="contrasenia" />
+      </div>
 
-            <div className="LittleBoxy">
-            <button onClick={handlerClick}>Iniciar Sesion </button>
-            <Link to="/Regist"><button>Registrar Algo</button></Link>
-            <Link to="/Registration">No tienes cuenta?, registrate</Link>
-            <Link to="/RickAndMorty"><button> RickAndMorty</button></Link>
-            </div>
-        </form>
-    )
+      <div className="LittleBoxy">
+        <button onClick={handlerClick}>Iniciar Sesion </button>
+        <Link to="/Regist">
+          <button>Registrar Algo</button>
+        </Link>
+        <Link to="/Registration">No tienes cuenta?, registrate</Link>
+        <Link to="/RickAndMorty">
+          <button> RickAndMorty</button>
+        </Link>
+      </div>
+    </form>
+  );
 }
 export default FLogin;
