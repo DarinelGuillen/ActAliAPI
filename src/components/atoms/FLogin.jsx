@@ -1,3 +1,4 @@
+
 import { useRef } from "react";
 import {Link} from "react-router-dom" 
 import LogoLogin from "../../assets/img/3dfingerprint.png"
@@ -8,7 +9,22 @@ function FLogin(){
     const formL=useRef();
     const handlerClick=(e)=>{
         e.preventDefault();
-        to="/Regist"
+        let users="";
+        
+        fetch("http://localhost:3000/user") //enviar el request al servidor "nombre del archivo"
+        .then(function (response) {
+        return response.json(); //convetir los datos de .json a un objeto javascrip
+    })
+    .then(function (user) {
+     users = user;
+    console.log(users);
+    })
+    for (let users of users) {
+        console.log();
+    }
+    if(users="darinels"){
+
+    }else{}
     }
     return(
         <form ref={formL}>
